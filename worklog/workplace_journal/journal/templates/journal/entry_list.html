@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entry List</title>
+</head>
+<body>
+    <h1>Entry List</h1>
+    <ul>
+        {% for entry in entries %}
+            {% if entry.author == request.user or request.user.is_superuser %}
+                <!-- Wyświetl wpisy użytkownika lub wszystkie wpisy dla administratora -->
+                <li>{{ entry.date }} - {{ entry.start_time }} to {{ entry.end_time }}: {{ entry.work_done }}</li>
+            {% endif %}
+        {% empty %}
+            <li>No entries found</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
